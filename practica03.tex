@@ -38,6 +38,73 @@
 \begin{document}
 \maketitle
 
+\section{Reporte}
+Para nuestro diseño de la base de datos tomamos las siguientes decisiones:
+
+\textbf{- Entidades: }
+\begin{itemize}
+\item Como es necesario llevar el control de las tarjetas SIM  
+      creamos una entidad \textbf{SIM}, consideramos como llave 
+      primaria a \textbf{ICCID} (identificador de la SIM) y su 
+      único atributo será \textbf{Tipo} para el tipo de red de 
+      la tarjeta. 
+\item Se necesita llevar un registro de los empleados por lo que 
+      creamos una entidad \textbf{Empleado} y consideramos como 
+      llave primaria a un identificador único \textbf{IDEmpleado}.
+      Sus atributos son \textbf{Fecha} para la fecha de nacimiento, 
+      \textbf{Sexo}, \textbf{Estudios} para el grado máximo de estudios y 
+      hicimos dos atributos compustos \textbf{Nombre} y \textbf{Dirección}, 
+      para \textbf{Nombre} consideramos \textbf{Nombre}, 
+      \textbf{Paterno} y \textbf{Materno}, y para \textbf{Dirección} 
+      consideramos \textbf{Número}, \textbf{Calle}, \textbf{Colonia},
+      \textbf{Alcaldía} y \textbf{CP}.
+\item Creamos la entidad  \textbf{Licencias} para registrar las licencias de conducir. Usamos el atributo  \textbf{IDLicencia} como identificador de la entidad e incluimos atributos que creemos nos podrían interesar sobre una licencia que son:  \textbf{Tipo},  \textbf{FechaExpedición} y  \textbf{TipoSangre} de la persona a la que pertenece la licencia.
+\item Puesto que se realiza un examen médico cada 6 meses los empleados
+      establecimos una entidad \textbf{Examen Médico}, agregamos 
+      una llave primaria \textbf{IDExamenMédico} y sus atributos 
+      son \textbf{peso}, \textbf{talla}, \textbf{presión} y \textbf{status}
+\item Para tener registro de los vehículos usamos la entidad \textbf{Vehículo} con atributos \textbf{Capacidad},  \textbf{Fecha} que comenzó a operar, \textbf{Combustible},  \textbf{EnOperación} y  \textbf{Placas}. El atributo  \textbf{EnOperación} nos indica si el vehículo está operando normalmente o no pues se encuentra en reparación. Incluimos el atributo  \textbf{Placas} para utilizarlo como identificador único de vehículo.
+\item Para los vehículos que se encuentran en reparación creamos la entidad \textbf{Taller} con atributos \textbf{Nombre}, \textbf{Dirección} y un identificador único \textbf{IDTaller}.      
+\end{itemize}
+
+\textbf{- Relaciones: }
+
+\begin{itemize}
+\item Relacionamos Vehículo con Empleado  con la relación 
+      \textbf{Operar}, como un vehículo puede ser operado por muchos 
+      empleados pero un empleado solo puede operar un vehículo 
+      la cardinalidad es $1:N$, su participación es total de ambos 
+      lados debido a que un empleado debe operar un vehículo y un 
+      vehículo debe ser operado por al menos un empleado.
+\item Para relacionar SIM con Vehículo hicimos 
+      una relación \textbf{Asignar,} como una sola tarjeta SIM 
+      se asigna a un solo vehículo la cardinalidad es $1:1$, su
+      participación es total del lado de Vehículo y 
+      parcial del lado de SIM debido a que puede haber tarjetas SIM 
+      sin ser asignadas pero cada carro debe contar con una tarjeta 
+      SIM. Además agregamos los atributos \textbf{fecha} y \textbf{hora} 
+      ya que sólo si la tarjeta se encuentra asignada queremos saber 
+      la fecha y hora que fue asignada. 
+\item Se relaciona Vehículo con Taller por medio de la relación \textbf{Reparar},  como un taller puede reparar varios vehículos pero un vehículo solo puede estar siendo reparado por un solo taller la cardinalidad de la relación es $N:1$. Como nos interesa saber cuánto tiempo ha estado el vehículo fuera de servicio y las razones  para ser reparado la relación tiene como atributos la \textbf{FechaIngreso} que es cuando el vehículo deja de operar e ingresa al taller, la \textbf{FechaSalida} que es la fecha estimada en la que saldrá del taller y el atributo \textbf{Razón} que es la razón por la que debe hacerse la reparación.
+\item Relacionamos el Examen Médico con Empleado con la relación 
+      \textbf{Realizar}, como un empleado puede tener muchos 
+      examenes médicos la cardinalidad es $1:N$, su participación 
+      es total de ambos lados ya que a todos los empleados se les 
+      realiza un examen médico y un examen médico solo se realiza 
+      si hay un empleado a cual hacérselo. También agregamos los 
+      atributos \textbf{Fecha}, \textbf{Hora} y \textbf{Médico}
+      debido a que puede ser realizado en diferentes fechas y el médico 
+      encargado puede ser diferente por lo que se almacenara su cédula. 
+\item Relacionamos Empleado con Licencia a partir de la relación
+      \textbf{Tener}, como un empleado puede tener varias licencias 
+      pero una licencia solo puede relacionarse con un empleado 
+      la cardinalidad es $1:N$, su participación es total de 
+      ambos lados ya que un empleado debe tener al menos una licencia 
+      y cada licencia debe de estar relacionado con un empleado. agregamos
+      el atributo \textbf{FechaVencimiento} para tener un historial de 
+      las licencias del empleado. 
+\end{itemize}
+
 \section{Bitácora}
 \begin{itemize}
     \item
