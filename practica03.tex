@@ -70,7 +70,7 @@ Para nuestro diseño de la base de datos tomamos las siguientes decisiones:
       \textbf{- Relaciones: }
 
       \begin{itemize}
-      \item Relacionamos Vehículo con Empleado  con la relación
+      \item Relacionamos Vehículo con Empleado con la relación
             \textbf{Operar}, como un vehículo puede ser operado por muchos
             empleados pero un empleado solo puede operar un vehículo
             la cardinalidad es $1:N$, su participación es total de ambos
@@ -85,7 +85,7 @@ Para nuestro diseño de la base de datos tomamos las siguientes decisiones:
             SIM. Además agregamos los atributos \textbf{fecha} y \textbf{hora}
             ya que sólo si la tarjeta se encuentra asignada queremos saber
             la fecha y hora que fue asignada.
-      \item Se relaciona Vehículo con Taller por medio de la relación \textbf{Reparar},  como un taller puede reparar varios vehículos pero un vehículo solo puede estar siendo reparado por un solo taller la cardinalidad de la relación es $N:1$. Como nos interesa saber cuánto tiempo ha estado el vehículo fuera de servicio y las razones  para ser reparado la relación tiene como atributos la \textbf{FechaIngreso} que es cuando el vehículo deja de operar e ingresa al taller, la \textbf{FechaSalida} que es la fecha estimada en la que saldrá del taller y el atributo \textbf{Razón} que es la razón por la que debe hacerse la reparación.
+      \item Se relaciona Vehículo con Taller por medio de la relación \textbf{Reparar},  ya que un taller puede reparar varios vehículos pero un vehículo solo puede estar siendo reparado por un solo taller la cardinalidad de la relación es $N:1$. Como nos interesa saber cuánto tiempo ha estado el vehículo fuera de servicio y las razones  para ser reparado la relación tiene como atributos la \textbf{FechaIngreso} que es cuando el vehículo deja de operar e ingresa al taller,la \textbf{FechaSalida} que es la fecha estimada en la que saldrá del taller y el atributo \textbf{Razón} que es la razón por la que debe hacerse la reparación.
       \item Relacionamos el Examen Médico con Empleado con la relación
             \textbf{Realizar}, como un empleado puede tener muchos
             examenes médicos la cardinalidad es $1:N$, su participación
